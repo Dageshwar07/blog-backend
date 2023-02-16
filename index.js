@@ -10,9 +10,11 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
+const { Console } = require('console');
 require('dotenv').config();
 const BASE_URL=process.env.BASE_URL
 const MONGODB_URI =process.env.MONGODB_URI
+const PORT = process.env.PORT||4000
 // MONGODB_URI='mongodb+srv://Dageshwar07:Dagesh0712@cluster0.36e7hn3.mongodb.net/?retryWrites=true&w=majority'
 // BASE_URL='http://localhost:3000'
 const salt = bcrypt.genSaltSync(10);
@@ -140,5 +142,7 @@ app.get('/post/:id', async (req, res) => {
   res.json(postDoc);
 })
 
-app.listen(4000);
+app.listen(PORT,()=>{
+  console.log(`server start at port on ${PORT}`)
+})
 //
