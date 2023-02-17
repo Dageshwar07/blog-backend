@@ -10,7 +10,6 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
-const { Console } = require('console');
 require('dotenv').config();
 const BASE_URL=process.env.BASE_URL
 const MONGODB_URI =process.env.MONGODB_URI
@@ -26,7 +25,6 @@ app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 mongoose.set('strictQuery', true);
 
-// mongoose.connect('mongodb+srv://Dageshwar07:Dagesh0712@cluster0.36e7hn3.mongodb.net/?retryWrites=true&w=majority')
 mongoose.connect(MONGODB_URI)
 
 app.post('/register', async (req,res) => {
@@ -142,7 +140,12 @@ app.get('/post/:id', async (req, res) => {
   res.json(postDoc);
 })
 
-app.listen(PORT,()=>{
-  console.log(`server start at port on ${PORT}`)
+app.get('/test',(req,res)=>{
+  res.json("ok!!!")
 })
+
+
+app.listen(4000,()=>{
+console.log(`server is listen on ${PORT}`)  
+});
 //
